@@ -9,5 +9,25 @@
         android:id="@+id/welcomeFragment"
         android:name="at.htl.leonding.bhitm5.tadeotfeedback.WelcomeFragment"
         android:label="fragment_welcome"
-        tools:layout="@layout/fragment_welcome" />
+        tools:layout="@layout/fragment_welcome" >
+        <action
+            android:id="@+id/action_welcomeFragment_to_questionFragment"
+            app:destination="@id/questionFragment"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/questionFragment"
+        android:name="at.htl.leonding.bhitm5.tadeotfeedback.QuestionFragment"
+        android:label="fragment_question"
+        tools:layout="@layout/fragment_question" />
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="at.htl.leonding.bhitm5.tadeotfeedback.SummaryFragment"
+        android:label="fragment_summary"
+        tools:layout="@layout/fragment_summary" />
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="at.htl.leonding.bhitm5.tadeotfeedback.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>
