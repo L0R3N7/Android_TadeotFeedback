@@ -6,9 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
-import at.htl.leonding.bhitm5.tadeotfeedback.databinding.FragmentSummaryBinding
-import at.htl.leonding.bhitm5.tadeotfeedback.databinding.FragmentWelcomeBinding
+import at.htl.leonding.bhitm5.tadeotfeedback.databinding.FragmentNoAnswerBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -17,13 +15,10 @@ private const val ARG_PARAM2 = "param2"
 
 /**
  * A simple [Fragment] subclass.
- * Use the [SummaryFragment.newInstance] factory method to
+ * Use the [NoAnswerFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class SummaryFragment : Fragment() {
-    val args: SummaryFragmentArgs by navArgs()
-
-
+class NoAnswerFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -40,9 +35,12 @@ class SummaryFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val binding :FragmentSummaryBinding = FragmentSummaryBinding.inflate(inflater)
-        binding.tvLastRating.text="Ihre letzte Bewertung war: ${args.rating}"
-        binding.btFinishs.setOnClickListener { view -> view.findNavController().navigate(R.id.action_summaryFragment_to_welcomeFragment) }
+        var binding: FragmentNoAnswerBinding = FragmentNoAnswerBinding.inflate(inflater)
+
+        binding.btBackToQuestion.setOnClickListener { it.findNavController().navigate(R.id.action_noAnswerFragment_to_questionFragment) }
+        binding.btFinish.setOnClickListener { it.findNavController().navigate(R.id.action_noAnswerFragment_to_welcomeFragment) }
+
+        // Inflate the layout for this fragment
         return binding.root
     }
 
@@ -53,12 +51,12 @@ class SummaryFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment SummaryFragment.
+         * @return A new instance of fragment noAnswerFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic
         fun newInstance(param1: String, param2: String) =
-            SummaryFragment().apply {
+            NoAnswerFragment().apply {
                 arguments = Bundle().apply {
                     putString(ARG_PARAM1, param1)
                     putString(ARG_PARAM2, param2)

@@ -5,6 +5,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.findNavController
+import at.htl.leonding.bhitm5.tadeotfeedback.databinding.FragmentQuestionBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -33,9 +35,26 @@ class QuestionFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val binding : FragmentQuestionBinding = FragmentQuestionBinding.inflate(inflater)
+        binding.btNoAnswer.setOnClickListener{
+            view -> view.findNavController().navigate(R.id.action_questionFragment_to_noAnswerFragment)
+        }
+        binding.imageView10.setOnClickListener{view -> run { goToSummery(view, 1) } }
+        binding.imageView11.setOnClickListener{view -> run { goToSummery(view, 2) } }
+        binding.imageView12.setOnClickListener{view -> run { goToSummery(view, 3) } }
+        binding.imageView6.setOnClickListener{view -> run { goToSummery(view, 4) } }
+        binding.imageView4.setOnClickListener{view -> run { goToSummery(view, 5) } }
+        binding.imageView5.setOnClickListener{view -> run { goToSummery(view, 6) } }
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_question, container, false)
+        return binding.root
     }
+
+    fun goToSummery(view: View, rating: Int){
+        view.findNavController()
+            .navigate(QuestionFragmentDirections.actionQuestionFragmentToSummaryFragment(rating))
+    }
+
 
     companion object {
         /**
