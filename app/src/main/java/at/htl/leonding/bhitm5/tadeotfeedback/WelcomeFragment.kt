@@ -2,8 +2,10 @@ package at.htl.leonding.bhitm5.tadeotfeedback
 
 import android.os.Bundle
 import android.view.*
+import androidx.core.view.MenuProvider
 import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.NavigationUI
@@ -31,16 +33,20 @@ class WelcomeFragment : Fragment() {
         }
 
         // Inflate the layout for this fragment
-        setHasOptionsMenu(true)
+        setupMenu();
         return binding.root;
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.main_menu, menu)
-    }
+    private fun setupMenu(){
+        (requireActivity() as MainActivity).addMenuProvider(object : MenuProvider{
+            override fun onCreateMenu(menu: Menu, menuInflater: MenuInflater) {
+                menuInflater.inflate(R.menu.main_menu, menu)
+            }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return NavigationUI.onNavDestinationSelected(item, findNavController())
+            override fun onMenuItemSelected(menuItem: MenuItem): Boolean {
+                return NavigationUI.onNavDestinationSelected(menuItem, findNavController())
+            }
+
+        }, viewLifecycleOwner, Lifecycle.State.RESUMED)
     }
 }
